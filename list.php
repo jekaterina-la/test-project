@@ -34,64 +34,26 @@ $result = DB::run("SELECT * FROM products LIMIT 25");
             </button>
             </div>
     </div>
+    
     <div class="container">
+    
             <div class="card-deck mb-3">
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <div class="card mb-4 shadow-sm">
                             <div class="card-body">
                                     <div class="checkbox">
                                             <input type="checkbox" value="">
                                     </div>
-                                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                         <ul class="list-unstyled mt-2 mb-3 text-center">
                                             <li><?= $row["SKU"]?></li>
                                             <li><?= $row["name"]?></li>
                                             <li><?= number_format($row["price"], 2)?> $</li>
                                             <li>Size: <?= $row["parameter"]?></li>
                                         </ul>
-                                    <?php } ?>
-                                    
                             </div>
                     </div>
-                    <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                    <div class="checkbox">
-                                            <input type="checkbox" value="">
-                                    </div>
-                                    <ul class="list-unstyled mt-2 mb-3 text-center">
-                                            <li>JVC200123</li>
-                                            <li>Acme DISC</li>
-                                            <li>100$</li>
-                                            <li>Size: 700MB</li>
-                                    </ul>
-                            </div>
-                    </div>
-                    <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                    <div class="checkbox">
-                                            <input type="checkbox" value="">
-                                    </div>
-                                    <ul class="list-unstyled mt-2 mb-3 text-center">
-                                            <li>JVC200123</li>
-                                            <li>Acme DISC</li>
-                                            <li>100$</li>
-                                            <li>Size: 700MB</li>
-                                    </ul>
-                            </div>
-                    </div>
-                    <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                    <div class="checkbox">
-                                            <input type="checkbox" value="">
-                                    </div>
-                                    <ul class="list-unstyled mt-2 mb-3 text-center">
-                                            <li>JVC200123</li>
-                                            <li>Acme DISC</li>
-                                            <li>100$</li>
-                                            <li>Size: 700MB</li>
-                                    </ul>
-                            </div>
-                    </div>
-            </div>
+            <?php } ?> 
+            </div>   
     </div>
 </body>
 </html>

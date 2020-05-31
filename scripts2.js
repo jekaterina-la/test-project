@@ -12,15 +12,15 @@ $(function() {
     }
 
     if (selectedOption == "book") {
-        dimension.show();
-    } else {
-        dimension.hide();
-    }
-
-    if (selectedOption == "furniture") {
         weight.show();
     } else {
         weight.hide();
+    }
+
+    if (selectedOption == "furniture") {
+        dimension.show();
+    } else {
+        dimension.hide();
     } 
 })
 });
