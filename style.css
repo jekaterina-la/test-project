@@ -3,3 +3,8 @@
 .size-to-hide {
     display: none;
 }
+
+.card-columns {
+    column-count: 4;
+
+}

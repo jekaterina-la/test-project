@@ -8,8 +8,9 @@ if (isset($_POST["submit"])){
     $size = $_POST["size"];
     $dimension = $_POST["dimension"];
     $weight = $_POST["weight"];
+    $parameter = $size ?: $dimension ?: $weight; 
 
-    DB::run("INSERT INTO products (SKU, name, price, parameter) VALUES ('$sku', '$name', '$price', '$size' OR '$dimension' OR '$weight') ");
+    DB::run("INSERT INTO products (SKU, name, price, parameter) VALUES ('$sku', '$name', '$price', '$parameter') ");
 
     header("Location: /test-project/list.php");
 }
