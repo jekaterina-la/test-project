@@ -26,7 +26,7 @@ $result = DB::run("SELECT * FROM products LIMIT 25");
             </h1>
             <div>
             <button type="button" class="btn btn-outline-secondary dropdown-toggle mr-2" hidden>Mass Delete Action</button>
-            <a href="/TEST-TASK/add.php" class="btn btn-primary">
+            <a href="/test-project/add.php" class="btn btn-primary">
                     Add product
             </a>
             <button class="btn btn-danger js-delete-row" data-id="<?= $row["id"]?>" hidden>
@@ -48,7 +48,7 @@ $result = DB::run("SELECT * FROM products LIMIT 25");
                                             <li><?= $row["SKU"]?></li>
                                             <li><?= $row["name"]?></li>
                                             <li><?= number_format($row["price"], 2)?> $</li>
-                                            <li>Size: <?= $row["parameter"]?></li>
+                                            <li><?= $row["parameter"]?></li>
                                         </ul>
                             </div>
                     </div>
