@@ -12,7 +12,7 @@ $result = DB::run("SELECT * FROM products LIMIT 25");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product list</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="scripts.js"></script>
+    
     <link  
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
             rel="stylesheet" 
@@ -28,13 +28,13 @@ $result = DB::run("SELECT * FROM products LIMIT 25");
                     Product list
             </h1>
             <div>
-            <button type="button" class="btn btn-outline-secondary dropdown-toggle mr-2" hidden>Mass Delete Action</button>
+            <button type="button" id="butt" class="btn btn-outline-secondary dropdown-toggle mr-2">Mass Delete Action</button>
+            <button class="btn btn-danger" form="form_part" type="submit">
+                    Apply
+            </button>
             <a href="/test-project/add.php" class="btn btn-primary">
                     Add product
             </a>
-            <button class="btn btn-danger js-delete-row" data-id="<?= $row["id"]?>" hidden>
-                    Apply
-            </button>
             </div>
     </div>
     
@@ -43,19 +43,22 @@ $result = DB::run("SELECT * FROM products LIMIT 25");
             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <div class="card mb-4 shadow-sm">
                             <div class="card-body">
+                                 <form method="post" action="/TEST-TASK/delete.php" id="form_part">
                                     <div class="checkbox">
-                                            <input type="checkbox" value="">
+                                            <input type="checkbox" name="productschoose[]" value="<?= $row['id'] ?>">
                                     </div>
                                     <ul class="list-unstyled mt-2 mb-3 text-center">
                                             <li><?= $row["SKU"]?></li>
                                             <li><?= $row["name"]?></li>
-                                            <li><?= number_format($row["price"], 2)?></li>
+                                            <li><?= number_format($row["price"], 2)?> $</li>
                                             <li><?= $row["parameter"]?></li>
                                     </ul>
+                                 </form>   
                             </div>
                     </div>
             <?php } ?> 
             </div>   
     </div>
+    <script src="scripts.js"></script>
 </body>
 </html>

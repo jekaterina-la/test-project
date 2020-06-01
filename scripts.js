@@ -1,13 +1,20 @@
-$(function() {
-    $(".js-delete-row").on("click", function() {
-        const id = $(this).attr("data-id");
+function check(checked = true) {
+    const cbs = document.querySelectorAll('input[name="productschoose[]"]');
+    cbs.forEach((cb) => {
+        cb.checked = checked;
+    });
+}
 
-        $.ajax({
-            method: "GET",
-            url: "delete.php?id=" + id + "&redirect=false"
-        }).then(function() {
-            window.location = "list.php"
-        })
-    })
-})
+const btn = document.querySelector('#butt');
+butt.onclick = checkAll;
+
+function checkAll() {
+    check();
+    this.onclick = uncheckAll;
+}
+
+function uncheckAll() {
+    check(false);
+    this.onclick = checkAll;
+}
 

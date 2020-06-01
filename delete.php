@@ -1,14 +1,20 @@
 <?php
-    if (isset($_GET["id"])) {
-        require_once "db-connection.php";
+    require_once "db-connection.php";
+        
+        if(isset($_POST['productschoose'])) {
 
-        $id = $_GET["id"];
+            foreach($_POST['productschoose'] as $id) {
+                $params .= ' ' . $id;
+            }
+            
+          //  var_dump($_POST['productschoose'] as $id)
+            $result = DB::run("DELETE FROM products WHERE id IN ($params)");
 
-        $result = DB::run("DELETE FROM products WHERE id=$id");
-    }
+        }
 
-    if (isset($_GET["redirect"]) && $_GET["redirect"] === false) {
+        if (isset($_GET["redirect"]) && $_GET["redirect"] === false) {
         return;
-    }
-    header("Location: list.php");
+        }
+
+    header("Location: /test-project/list.php");
 ?>
