@@ -1,4 +1,6 @@
 <?php
+
+// Configuration for correct database connection
 class DB {
     private static $connection;
 

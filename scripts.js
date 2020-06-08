@@ -1,3 +1,5 @@
+// Function to check/uncheck all rows when you type the button
+
 function check(checked = true) {
     const cbs = document.querySelectorAll('input[name="productschoose[]"]');
     cbs.forEach((cb) => {

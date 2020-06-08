@@ -1,3 +1,5 @@
+//Function for form 'Add product'. Form dynamically change special attribute (input field) when type is selected
+
 $(function() {
     $(".type-switcher").change(function() {
     var selectedOption = $(this).val();
@@ -41,16 +43,3 @@ $(function() {
 $(".type-switcher").trigger("change");
 });
 
-//$(function() {
-//    $('input[type=text]').on('change',function(){
-//    var arr = [];
-//    $siblings = $(this).siblings();
-//    $.each($siblings, function (i, key) {
- //      arr.push($(key).val()); 
- //   });
- //   if ($.inArray($(this).val(), arr) !== -1)
- //   {
- //       alert("duplicate has been found");
- //   }
-//});
-//});

@@ -1,6 +1,8 @@
+
 <?php
 require_once "db-connection.php";
 
+// Select the results from database 
 $result = DB::run("SELECT * FROM products LIMIT 25");
 
 ?>
@@ -23,41 +25,58 @@ $result = DB::run("SELECT * FROM products LIMIT 25");
             rel="stylesheet">
 </head>
 <body class="p-4">
+
+    <!-- Page header -->
     <div class="d-flex justify-content-between align-items-center pl-2 pr-2 pb-2 mb-5 border-bottom">
             <h1>
                     Product list
             </h1>
             <div>
-            <button type="button" id="butt" class="btn btn-outline-secondary dropdown-toggle mr-2">Mass Delete Action</button>
-            <button class="btn btn-danger" form="form_part" type="submit">
-                    Apply
+
+            <!-- Button that checks all exsisting rows for mass delete action -->
+            <button type="button" id="butt" class="btn btn-outline-secondary dropdown-toggle mr-2">
+                    Mass Delete Action
             </button>
-            <a href="/test-project/add.php" class="btn btn-primary">
+
+            <!-- Button that delete one or more checked rows -->
+            <button class="btn btn-danger" form="form_part" type="submit">
+                    Delete
+            </button>
+
+            <!-- Button that open add.php page and show 'Product add' form -->
+            <a href="/TEST-TASK/add.php" class="btn btn-primary">
                     Add product
             </a>
             </div>
     </div>
     
+    <!-- Page body -->
     <div class="container">
-            <div class="card-columns mb-3">
-            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+        <div class="card-columns mb-3">
+
+            <!-- Form that shows registered product from 'Add product' -->
+            <form method="post" action="/TEST-TASK/delete.php" id="form_part">
+
+                <!-- Fetch results that have been inserted in 'Add product' form -->
+                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <div class="card mb-4 shadow-sm">
                             <div class="card-body">
-                                 <form method="post" action="/TEST-TASK/delete.php" id="form_part">
                                     <div class="checkbox">
                                             <input type="checkbox" name="productschoose[]" value="<?= $row['id'] ?>">
                                     </div>
+
+                                    <!-- Show product list (saved results from database) -->
                                     <ul class="list-unstyled mt-2 mb-3 text-center">
                                             <li><?= $row["SKU"]?></li>
                                             <li><?= $row["name"]?></li>
                                             <li><?= number_format($row["price"], 2)?> $</li>
                                             <li><?= $row["parameter"]?></li>
-                                    </ul>
-                                 </form>   
+                                    </ul>   
                             </div>
                     </div>
-            <?php } ?> 
-            </div>   
+                <?php } ?> 
+            </form> 
+        </div>   
     </div>
     <script src="scripts.js"></script>
 </body>

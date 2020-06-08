@@ -1,19 +1,24 @@
 <?php
+
+// When save button from Add product form is clicked
 if (isset($_POST["submit"])){
     require_once "db-connection.php";
 
+    //Data from the form fields
     $sku = $_POST["sku"];
     $name = $_POST["name"];
     $price = $_POST["price"];
     $size = $_POST["size"];
     $dimension = $_POST["dimension"];
     $weight = $_POST["weight"];
+
+    // Special attribute variable for choosen parameter
     $parameter = $size ?: $dimension ?: $weight; 
 
-    DB::run("INSERT INTO products (SKU, name, price, parameter) VALUES ('$sku', '$name', '$price', '$parameter') ");
+    DB::run("INSERT INTO products (SKU, name, price, parameter) VALUES ('$sku', '$name', '$price','$parameter')");
 
-    header("Location: /test-project/list.php");
-}
+    header("Location: /TEST-TASK/list.php");
+} 
 ?>
 
 <!DOCTYPE html>
@@ -36,17 +41,26 @@ if (isset($_POST["submit"])){
             rel="stylesheet">
 </head>
 <body class="p-4">
+
+        <!-- Header -->
         <div class="d-flex justify-content-between align-items-center pl-2 pr-2 pb-2 mb-5 border-bottom">
             <h1>
                     Product add
             </h1>
         </div>
+
+        <!-- Page body -->
         <div class="d-flex pl-2">
-                <form action="/test-project/add.php" class="must-have-validation" novalidate method="post">
+
+                <!-- Form 'Add product' with validation -->
+                <form action="/TEST-TASK/add.php" class="must-have-validation" novalidate method="post">
                     <div class="form-group mb-2">
+                            <!-- SKU input field with symbol restriction -->
                             <label>
                                     SKU
                                     <input class="form-control mt-2" name="sku" minlength="6" maxlength="10">
+
+                                    <!-- Error message if field is empty-->
                                     <div class="invalid-feedback">Please write product SKU </br>
                                         min 6 characters </br> max 10 characters</div>
                             </label>
@@ -76,16 +90,22 @@ if (isset($_POST["submit"])){
                             </select>
                             <div class="invalid-feedback">Please choose product type</div>
                     </div>
+
+                    <!-- Input field that is shown when option value="dvd-disc" is selected -->
                     <div class="form-group mb-2 size-to-hide">
                             <label>
                                     Size
                                     <input class="form-control mt-2 size-required" name="size" aria-describedby="shelper">
+
+                                    <!-- Description with helpful information for this input field -->
                                     <small id="shelper" class="form-text text-muted">
                                             Please provide size in MB format</br>
                                             Write "Size: " before MB
                                     </small>
                             </label>
                     </div>
+
+                    <!-- Input field that is shown when option value="book" is selected -->
                     <div class="form-group mb-2 dimension-to-hide">
                             <label>
                                     Height, Width, Length
@@ -97,6 +117,8 @@ if (isset($_POST["submit"])){
                                     </small>
                             </label>
                     </div>
+
+                    <!-- Input field that is shown when option value="furniture" is selected -->
                     <div class="form-group mb-2 weight-to-hide">
                             <label>
                                     Weight
@@ -110,22 +132,24 @@ if (isset($_POST["submit"])){
                     <button class="btn btn-primary mt-2" type="submit" name="submit">Save</button>
                 </form>
         </div>
+
+        <!-- Validation script for 'Add product' form. Works when button 'Save' is clicked -->
         <script>
-        (function() {
-          'use strict';
-          window.addEventListener('load', function() {
-            var forms = document.getElementsByClassName('must-have-validation');
-            var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add('was-validated');
+            (function() {
+              'use strict';
+              window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('must-have-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                  form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                  }, false);
+                });
               }, false);
-            });
-          }, false);
-        })();
+            })();
         </script>
 </body>
 </html>
